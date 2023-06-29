@@ -6,40 +6,45 @@ const fetchData = async () => {
     const response = await fetch('https://api.coingecko.com/api/v3/exchange_rates');
     const data = await response.json();
     const rates = data.rates;
+    const totalRates = Object.keys(rates).length;
 
-    const renderRates = (ratesData) => {
-      displayData.innerHTML = '';
+    const renderRates = async (ratesData) => {
+      displayData.innerHTML = ''; // Clear the previous data
 
-      const rateKeys = Object.keys(ratesData);
+      for (const key of Object.keys(ratesData)) {
+        const { name, unit, value } = ratesData[key];
 
-      rateKeys.forEach((key, index) => {
-        const { name, unit, value, type } = ratesData[key];
+        displayData.innerHTML += `
+          <div class="data">
+            <table>
+              <tr>
+                <td>
+                  <div class="box">
+                    <p>no image</p>
+                  </div>
+                </td>
+                <td>
+                  <div class="details">
+                    <h1 class="rate">Rate: ${value}</h1>
+                    <p>Crypto name: ${name}</p>
+                    <p>Crypto unit: ${unit}</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        `;
 
-        // Delay the rendering of each item by the index multiplied by the delay time (1000 milliseconds = 1 second)
+        await new Promise((resolve) => setTimeout(resolve, 300)); // Delay rendering each rate by 1 second
+      }
 
+      if (Object.keys(ratesData).length === 0) {
+        displayData.innerHTML += '<p class="no_more_records">No records found.</p>';
+      } else if (Object.keys(ratesData).length === totalRates) {
         setTimeout(() => {
-          displayData.innerHTML += `
-            <div class="container-data">
-                <div class="row">
-                    <div></div>
-                    <div class="">
-                        <h1 class="rate">Rate: ${value}</h1>
-                        <p>Crypto name: ${name}</p>
-                        <p>Crypto unit: ${unit}</p>
-                    </div>
-                </div>
-            </div>
-          `;
-
-          // Check if it's the last item and show a notification
-
-          if (index === rateKeys.length - 1) {
-            setTimeout(() => {
-              displayData.innerHTML += '<p class="no_more_records">No more records to be shown.</p>';
-            }, 1000);
-          }
-        }, index * 1000); // Delay each item by the index multiplied by the delay time (1000 milliseconds = 1 second)
-      });
+          displayData.innerHTML += '<p class="no_more_records">No more records to be shown.</p>';
+        }, 2000); // Delay the display of the "No more records to be shown" message for 2 seconds
+      }
     };
 
     renderRates(rates);
@@ -61,5 +66,4 @@ const fetchData = async () => {
 };
 
 // Call the fetchData function to start fetching and displaying the data
-
 fetchData();

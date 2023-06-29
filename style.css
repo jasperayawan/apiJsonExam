@@ -21,19 +21,32 @@ body{
 }
 .container-data{
     display: flex;
-    flex-direction: column;
-    gap: 2;
+    justify-content: center;
+    align-items:center;
 }
-.row{
-    display: flex;
-    gap: 2;
-    margin: .8rem 0;
+.data{
+    margin: 1rem 0;
 }
 .rate{
     color: red;
 }
+.details{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 0 0 2rem;
+}
 .no_more_records{
     text-align: center;
+    margin: 4rem 0;
+}
+.box{
+    width: 100px;
+    height: 100px;
+    background: #efefef; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
