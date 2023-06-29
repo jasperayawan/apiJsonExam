@@ -35,7 +35,6 @@ const fetchData = async () => {
           </div>
         `;
 
-        await new Promise((resolve) => setTimeout(resolve, 300)); // Delay rendering each rate by 1 second
       }
 
       if (Object.keys(ratesData).length === 0) {
