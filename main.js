@@ -10,21 +10,35 @@ const fetchData = async () => {
     const renderRates = (ratesData) => {
       displayData.innerHTML = '';
 
-      Object.keys(ratesData).forEach((key) => {
+      const rateKeys = Object.keys(ratesData);
+
+      rateKeys.forEach((key, index) => {
         const { name, unit, value, type } = ratesData[key];
 
-        displayData.innerHTML += `
-          <div class="container-data">
-              <div class="row">
-                  <div></div>
-                  <div class="">
-                      <h1 class="rate">Rate: ${value}</h1>
-                      <p>Crypto name: ${name}</p>
-                      <p>Crypto unit: ${unit}</p>
-                  </div>
-              </div>
-          </div>
-        `;
+        // Delay the rendering of each item by the index multiplied by the delay time (1000 milliseconds = 1 second)
+
+        setTimeout(() => {
+          displayData.innerHTML += `
+            <div class="container-data">
+                <div class="row">
+                    <div></div>
+                    <div class="">
+                        <h1 class="rate">Rate: ${value}</h1>
+                        <p>Crypto name: ${name}</p>
+                        <p>Crypto unit: ${unit}</p>
+                    </div>
+                </div>
+            </div>
+          `;
+
+          // Check if it's the last item and show a notification
+
+          if (index === rateKeys.length - 1) {
+            setTimeout(() => {
+              displayData.innerHTML += '<p class="no_more_records">No more records to be shown.</p>';
+            }, 1000);
+          }
+        }, index * 1000); // Delay each item by the index multiplied by the delay time (1000 milliseconds = 1 second)
       });
     };
 
@@ -45,5 +59,7 @@ const fetchData = async () => {
     console.log(err);
   }
 };
+
+// Call the fetchData function to start fetching and displaying the data
 
 fetchData();

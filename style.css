@@ -7,9 +7,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 .container{
     min-width: 600px;
+    margin: 0 auto;
 }
 .searcharea{
     width: 100%;
@@ -29,4 +31,16 @@ body{
 }
 .rate{
     color: red;
+}
+.no_more_records{
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    /* Styles for smaller screens */
+
+    .container{
+        padding: 0 6rem;
+    }
 }
