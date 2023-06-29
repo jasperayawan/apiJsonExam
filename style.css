@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    min-width: 600px;
+}
+.searcharea{
+    width: 100%;
+    border-radius: 8px;
+    padding: .6rem 1rem;
+    margin: 2rem 0;
+}
