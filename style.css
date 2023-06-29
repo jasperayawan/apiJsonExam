@@ -17,3 +17,16 @@ body{
     padding: .6rem 1rem;
     margin: 2rem 0;
 }
+.container-data{
+    display: flex;
+    flex-direction: column;
+    gap: 2;
+}
+.row{
+    display: flex;
+    gap: 2;
+    margin: .8rem 0;
+}
+.rate{
+    color: red;
+}
